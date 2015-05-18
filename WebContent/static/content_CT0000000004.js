@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-10-19","ChannelCode":"C0031","R15":"","ContentTitle":"吃饭消费100元送饮料","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>这里是明细内容<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"S00000002","R3":"","SerialNo":"CT0000000004","ContentTxt":"","IssueTime":"13:09:30"};

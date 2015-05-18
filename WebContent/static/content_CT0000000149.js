@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-11-11","ChannelCode":"C0033","R15":"","ContentTitle":"APEC会议期间车辆单双号实行","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>APEC会议期间车辆单双号实行。<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"U00000005","R2":"","ContentFrom":"小李(个人)","R3":"","SerialNo":"CT0000000149","ContentTxt":"APEC会议期间车辆单双号实行。","IssueTime":"17:31:44"};

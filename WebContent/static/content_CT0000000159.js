@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-11-13","ChannelCode":"C0019","R15":"","ContentTitle":"2014届书法大赛活动报道","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>2014届书法大赛活动报道<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"A00000003","R2":"","ContentFrom":"书法比赛(社团)","R3":"","SerialNo":"CT0000000159","ContentTxt":"2014届书法大赛活动报道","IssueTime":"09:10:04"};

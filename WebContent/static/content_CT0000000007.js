@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-10-29","ChannelCode":"C0019","R15":"","ContentTitle":"22","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>kjhgfd<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"A00000002","R3":"","SerialNo":"CT0000000007","ContentTxt":"kjhgfd","IssueTime":"23:41:27"};

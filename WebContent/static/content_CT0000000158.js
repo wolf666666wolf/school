@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-11-13","ChannelCode":"C0031","R15":"","ContentTitle":"宜家家居增添新家居","R13":"","R1":"Y`是```","R14":"","R11":"","ContentHtml":"<p>宜家家居增添新家居。<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"S00000015","R2":"","ContentFrom":"宜家(商家)","R3":"","SerialNo":"CT0000000158","ContentTxt":"宜家家居增添新家居。","IssueTime":"09:10:04"};

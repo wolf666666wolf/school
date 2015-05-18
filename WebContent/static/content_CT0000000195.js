@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-12-10","ChannelCode":"C0042","R15":"","ContentTitle":"北京可能即将迎来首场入冬的大雪。","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>北京可能即将迎来首场入冬的大雪。<\/p>","R12":"","R10":"","R8":"1","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"物业管理员","R3":"","SerialNo":"CT0000000195","ContentTxt":"北京可能即将迎来首场入冬的大雪。","IssueTime":"09:58:28"};

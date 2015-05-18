@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"2014-11-10","ChannelCode":"C0042","R15":"","ContentTitle":"报告通知1","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>报告通知1<\/p><p>报告通知1<\/p><p>报告通知1<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"","R3":"","SerialNo":"CT0000000013","ContentTxt":"报告通知1\r\n报告通知1\r\n报告通知1","IssueTime":"20:55:41"};

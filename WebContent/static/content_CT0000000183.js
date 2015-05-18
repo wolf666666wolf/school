@@ -1,1 +1,0 @@
-var contentinfo={"IssueDate":"","ChannelCode":"C0041","R15":"","ContentTitle":"习主席访问澳大利亚，与其达成良好共识。","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>澳大利亚总理愿意与中国一道，一起打击贪污腐败分子。<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"","R3":"","SerialNo":"CT0000000183","ContentTxt":"澳大利亚总理愿意与中国一道，一起打击贪污腐败分子。","IssueTime":""};
