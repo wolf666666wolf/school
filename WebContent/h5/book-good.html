@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>下订单</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/dateplugin.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/self-menu.js"></script>
+    <script src="./js/pageCommon.js"></script>
+    <script src="js/date.js"></script>
+    <script src="js/iscroll.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/jquery-jtemplates.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+</head>
+<style>
+</style>
+<script>
+$(function(){
+    //注册预约日期到日期插件
+    $('#OrderDate').date({theme:"datetime"});
+    $('#ArriveDate').date({theme:"datetime"});
+
+     //    alert(localStorage.userinfo)
+    //页面加载的一些处理
+    /*alert(getParameter("id"))*/
+    //隐藏下拉列表
+    $(".dropdownList").hide().attr("status","0");
+    if(localStorage.userinfo==undefined){
+        window.location.href = "bind-mine.html";
+    }
+    var userInfo = JSON.parse(localStorage.userinfo);
+    var prdInfo = JSON.parse("{}")
+    var prdid;
+   // alert(getParameter("id"))
+    if(getParameter("id")){
+        prdid = getParameter("id");
+        prdInfo.PrdID = prdid;
+        localStorage.prdInfo = JSON.stringify(prdInfo) ;
+        //alert(localStorage.sellerInfo);
+    }else{
+        window.location.href="good-info.html"
+    }
+
+    var userPosition ;
+    if(localStorage.userPosition){
+        userPosition = localStorage.userPosition;
+        //初始化订单，获取订单到达日期
+        po('order','initOrder',{"PrdID":prdInfo.PrdID,"UserPosition":userPosition},"initOrdercallback");
+    }else{
+        /*获取位置信息*/
+        var geolocation = new BMap.Geolocation();
+        var userPosition = "116.404|39.915";
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                userPosition = r.point.lng+"|"+r.point.lat;
+                localStorage.UserPosition = userPosition;
+            }
+            else {
+                if(localStorage.userPosition){
+                    userPosition = "116.404|39.915";
+                }
+            }
+            //初始化订单，获取订单到达日期
+            po('order','initOrder',{"PrdID":prdInfo.PrdID,"UserPosition":userPosition},"initOrdercallback");
+        },{enableHighAccuracy: true});
+    }
+
+    $("#back").attr("href","good-info.html?id="+prdInfo.PrdID);
+
+    /*提交订单*/
+    $("#subOrder").click(function() {
+       //alert();
+
+        if($("#Owner").val()==""){alert("请填写订单人姓名!");return;}
+        if($("#OrderDate").val()> $("#ArriveDate").val()){
+            alert("到达时间不能小于预约时间！");
+            return;
+        }
+        if($("#Address").val()==""){alert("请填写地址!");return;}
+        if($("#Phone").val()==""){alert("请填写手机!");return;}
+        var phone = $("#Phone").val();
+        var length = phone.length;
+        var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+
+        phone = phone.trim();
+        if(!mobile.test(phone)) {
+            alert("请输入正确联系方式！");
+            return;
+        }
+
+        var data = {
+            "PrdID": prdInfo.PrdID,//产品编码
+            "UserID": userInfo.UserID,//用户编码
+            /*"OrderType":$("#OrderType").attr("OrderType"),*/
+            "OrderDate": $("#OrderDate").val(),//预约日期
+            "ArriveDate": $("#ArriveDate").val(),//预计到达时间
+            "Owner": $("#Owner").val(),//订单人姓名
+            "OCount": $("#Count").val(),//数量
+            "ComeFlag": $("#ComeFlag").attr("ComeFlag"),//是否上门
+            "R1": $("#R1").attr("R1"),//地址区域
+            "Address": $("#Address").val(),//详细地址
+            "Requirement": $("#Requirement").val(),//详细要求
+            "Phone": $("#Phone").val(),//联系电话,手机
+            "Tel":$("#Phone").val() ///联系电话,座机
+        };
+        po('order', 'sendorder', data, "sendordercallback");
+       $(this).attr("disabled",true);
+    });
+    /*单选按钮组点击事件*/
+    $("#ComeFlag").find("li").click(function(){
+        $(this).addClass("checked");
+        $(this).siblings().removeClass("checked");
+        $("#ComeFlag").attr("ComeFlag",$(this).attr("ComeFlag"));
+    });
+    //plus Count minus
+    //加号点击
+    $("#plus").click(function(){
+        var count = $("#Count").val()
+        count++;
+        $("#Count").val(count);
+        if($("#Count").val()>1){
+            $("#minus").parent().removeClass("cannotuse");
+        }
+    });
+    //减号点击
+  $("#minus").click(function(){
+
+        var count = $("#Count").val();
+      if(count==1){return;}
+      count--;
+      if(count==1){
+          $(this).parent().addClass("cannotuse");
+      }
+      $("#Count").val(count);
+    });
+    /*下拉按钮点击*/
+    $(".dropdown").find("a").click(function(){
+        var status = $(this).parent().find(".dropdownList").attr("status");
+        if(status=="0"){
+            $(this).parent().find(".dropdownList").show().attr("status","1");
+        }
+        if(status=="1"){
+            $(this).parent().find(".dropdownList").hide().attr("status","0");
+        }
+    });
+    /*下拉列表选中*/
+    $(".dropdown").find(".dropdownList>ul>li").click(function(){
+       var outer =  $(this).parent().parent().parent();
+        outer.find("input").val($(this).html());
+        if(outer.attr("id")=="R1"){
+            outer.attr("R1",$(this).attr("R1"));
+        }
+        if(outer.attr("id")=="OrderType"){
+            outer.attr("OrderType",$(this).attr("OrderType"));
+        }
+        $(this).parent().parent().hide().attr("status","0");
+    });
+
+});
+/*页面初始化回调函数*/
+function initOrdercallback(d)
+{
+//    alert(JSON.stringify(d))
+        /*d.rd.succ=true*/
+    if(d.rd.succ)
+    {
+         /*d.rd.data.OrderDate="2014-12-12 12:30";//预定时间
+         d.rd.data.ArriveDate="2014-12-12 16:30";//预计到达时间*/
+        /*给页面元素赋值*/
+        //alert(sellerX +"  "+sellerY);
+        $("#OrderDate").val (d.rd.data.OrderDate);//预定时间
+        $("#ArriveDate").val(d.rd.data.ArriveDate);//预计到达时间
+    }
+}
+/*提交订单的回调函数*/
+function sendordercallback(d){
+   //alert(JSON.stringify(d))
+    if(d.rd.succ){
+//        alert(d.rd.msg)
+        alertMsg("main",d.rd.msg,"50%","0%","#374F87","0.8em","10%");
+        $("#subOrder").attr("disabled",false);
+        setTimeout(function(){
+            window.location.href="good-info.html";
+        },800);
+
+    }else{
+        alertMsg("main",d.rd.msg,"50%","0%","#374F87","0.8em","10%");
+        $("#subOrder").attr("disabled",false);
+    }
+}
+
+</script>
+
+<body>
+<header>
+    <div class="select-back">
+        <a href="good-info.html" id="back">
+            <span  class="back-icon"></span><br>
+            返回
+        </a>
+    </div>
+    下订单
+</header>
+<main class="leave-message">
+
+    <form  action="" method="" id="bookform" onsubmit="subForm()">
+        <div class="txt-center">
+            <div class="item">
+                <span>订单人姓名*</span>
+            </div>
+            <div class="inputDiv">
+                <input id="Owner" type="text" class="{required:true,en_zh:true}">
+            </div>
+            <div class="item">
+                <span class="form-title">预约日期</span>
+            </div>
+            <div class="inputDiv">
+                <input type="text" id="OrderDate"   >
+            </div>
+            <div id="datePlugin"></div>
+            <div class="item">
+                <span class="form-title">预计到达时间</span>
+            </div>
+            <div class="inputDiv">
+                <input id="ArriveDate" type="text"   >
+            </div>
+            <div class="item">
+                <span class="form-title">内容（数量）</span>
+            </div>
+            <div class="num-div">
+                <div class="plus "><a id="plus" class="plus"></a></div>
+                <input type="text" value="1" id="Count" disabled="disabled">
+                <div class="minus cannotuse"><a a  id="minus" class="minus"></a></div>
+            </div>
+        </div>
+
+        <div class="item">
+            <span>是否上门服务</span>
+        </div>
+        <div class="onsite-service">
+            <ul id="ComeFlag" ComeFlag="y">
+                <li  ComeFlag="y"><span class="yes"></span></li>
+                <li class="checked" ComeFlag="n"><span class="no"></span></li>
+            </ul>
+        </div>
+
+        <div class="item"><span>地址*</span></div>
+        <div class="area dropdown" id="R1" R1="教学区">
+            <input type="text" disabled="disabled" value="管理办公区" >
+            <a></a>
+            <div class="dropdownList">
+                <ul>
+                    <li R1="管理办公区">管理办公区</li> 
+							<li R1="公共教学区">公共教学区</li> 
+							<li R1="各院系教学区">各院系教学区</li> 
+							<li R1="生活服务区">生活服务区</li> 
+							<li R1="校企产业">校企产业</li> 
+							<li R1="清华科技园">清华科技园 </li> 
+							<li R1="体育场馆">体育场馆</li> 
+							<li R1="主楼">主楼</li> 
+							<li R1="大礼堂">大礼堂</li> 
+							<li R1="老图书馆">老图书馆</li> 
+							<li R1="新图书馆">新图书馆</li> 
+							<li R1="蓝旗营住宅区">蓝旗营住宅区</li> 
+							<li R1="东小区">东小区</li> 
+							<li R1="西小区">西小区</li> 
+							<li R1="中区">中区</li> 
+							<li R1="东南小区">东南小区</li> 
+							<li R1="西北小区">西北小区</li> 
+							<li R1="西南小区">西南小区</li> 
+							<li R1="老年公寓">老年公寓</li> 
+							<li R1="荷清苑小区">荷清苑小区</li> 
+							<li R1="青年公寓">青年公寓</li> 
+							<li R1="其他">其他</li> 
+                </ul>
+            </div>
+        </div>
+        <input type="text" id="Address" style="width: 100%" placeholder="详细地址">
+        <div class="item"><span>详细要求</span></div>
+        <textarea id="Requirement"></textarea>
+        <!--<div class="item">
+            <span>联系电话*</span>
+        </div>
+        <div style="100%;position: relative;">
+            <input id="Tel" type="text"  style="padding-left:4em" >
+            <span style="position: absolute;top: 0;left: 1em">010-</span>
+        </div>-->
+        <input id="Tel" type="text"  style="padding-left:4em;display: none"  >
+
+        <div class="mobile">
+            <input id="Phone" type="text" >
+            <span class="mob">手机号</span>
+        </div>
+        <a  id="subOrder" type="button" class="sub-book" ></a>
+
+
+    </form>
+</main>
+
+
+
+</body>
+</html>

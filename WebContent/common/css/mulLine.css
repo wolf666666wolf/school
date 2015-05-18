@@ -1,0 +1,207 @@
+/*-------------------------------------------------------------------------*/
+/*    文件名称: mulLine.css                                         */
+/*    文件功能: 定义多行输入的样式*/
+/*  最近更新人: 陈海强                                                       */
+/*最近更新日期: 2005-1-3                                                 */
+/*-------------------------------------------------------------------------*/
+
+/*--TABLE的样式--*/
+/*    table.muline{
+                background-color: #90d092;
+                cellspacing:0;
+                cellpadding:0;
+                BORDER-LEFT: #90d092 1pt solid;
+                BORDER-BOTTOM: #90d092 1pt solid;           
+
+                }
+*/
+    table.muline{
+                background-color: #b9a7db;
+                cellspacing:0;
+                cellpadding:0;
+                BORDER-LEFT: #b9a7db 1px solid;
+                BORDER-BOTTOM: #b9a7db 1px solid;           
+
+                }				
+				
+				
+
+/*--TD的样式--*/
+    td.mulinetitle {
+               background-color: #b9a7db;   
+               text-align: center; 
+               color: #000000; 
+               BORDER-TOP: #b9a7db 1px solid;              
+               BORDER-RIGHT: #b9a7db 1px solid;                             
+               }
+    
+    td.muline { 
+               background-color: #ffffff;
+               text-align: center;
+               color: #000000; 
+               BORDER-RIGHT: #b9a7db 1px solid; 
+              }
+
+/*--INPUT的样式--*/
+/*
+    input.mulLineButton { 
+                     background-color: lightgray;
+                     color: #799AE1;
+                     BORDER-TOP-WIDTH: 1px;
+                     BORDER-TOP-STYLE: solid;
+                     BORDER-TOP-COLOR: #ffECFA;
+                     BORDER-BOTTOM-WIDTH: 1px;
+                     BORDER-BOTTOM-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #ffECFA;
+                     BORDER-RIGHT-WIDTH: 1px;
+                     BORDER-RIGHT-STYLE: solid;
+                     BORDER-BOTTOM-COLOR: #ffECFA;
+                     BORDER-LEFT-WIDTH: 1px;
+                     BORDER-LEFT-STYLE: solid;
+                     BORDER-LEFT-COLOR: #FFECFA;
+                      }
+*/
+
+/*    input.mulinetitle{
+                     color: #000000; 
+                     text-align: center;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none ;                     
+                     FONT-SIZE: 12px; 
+                     background-image: url(MulLine.gif);
+                     }*/
+	input.mulinetitle{
+                     color: #000000; 
+                     text-align: center;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none ;                     
+                     FONT-SIZE: 12px; 
+                     background-color:#b9a7db ;
+                     /*
+					 background-image:url(MulLine.png);
+					 */
+                     }
+                     
+    textarea.mulinetitle{
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: center;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none ;
+                     }
+    input.mulcommon   {
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: left;
+                     BORDER-TOP: #799AE1 0pt solid;              
+                     BORDER-LEFT: #799AE1 0pt solid; 
+                     BORDER-BOTTOM: #B1BBCF 0pt solid;              
+                     BORDER-RIGHT: #799AE1 0pt solid;                      
+
+                     }
+
+
+input.coolDatePickerMulline
+{
+	behavior: url(../common/behaviors/coolDatePicker.htc);
+  background-color: #ffffff;
+  color: #000000; 
+  text-align: left;
+  BORDER-TOP-STYLE: none;
+  BORDER-BOTTOM-STYLE: none;
+  BORDER-RIGHT-STYLE: none;
+  BORDER-LEFT-STYLE: none    
+}
+
+    textarea.mulcommon   {
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: left;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none 
+                     }
+
+    input.mulreadonly { 
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: left;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none 
+                     }
+   textarea.mulreadonly { 
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: left;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none 
+                     }
+                     
+   input.button{
+                     BORDER-RIGHT: #90d092 1px solid; 
+                     PADDING-RIGHT: 2px; 
+                     BORDER-TOP: #90d092 1px solid; 
+                     PADDING-LEFT: 2px; 
+                     FONT-SIZE: 12px; 
+                     FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#90d092, EndColorStr=#90d092); 
+                     BORDER-LEFT: #90d092 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #90d092 1px solid;}
+    input.mulreadonlyt{
+                     background-color: #ffffff;
+                     color: #000000; 
+                     text-align: left;
+                     BORDER-TOP-STYLE: none;
+                     BORDER-BOTTOM-STYLE: none;
+                     BORDER-RIGHT-STYLE: none;
+                     BORDER-LEFT-STYLE: none 
+                     }
+    input.mulnotreadonlyt{
+                     background-color: #FBFAAB;
+                     color:#1A4FC0;
+                     BORDER-LEFT: none;
+                     BORDER-BOTTOM: none;
+                     BORDER-top: none;
+                     BORDER-right: none;
+                     } 
+    input.codeselect{
+                     background-color: #FBFAAB;
+                     color:#1A4FC0;
+                     BORDER-LEFT: none;
+                     BORDER-BOTTOM: none;
+                     BORDER-top: none;
+                     BORDER-right: none;
+                     border: 1px #799AE1 solid;
+                     height: 20px;
+                     width: 160px
+                     }                                      
+  
+  
+  .MulLinePageDiv
+  {
+  	FONT-SIZE: 12px; 
+  	text-align: right;
+  }
+  
+  .MulLinePageTable
+  {
+  	FONT-SIZE: 12px; 
+  	height:18px;
+  	valign:center;
+  }
+  
+  .CInput
+  {
+  	border:0px solid black;
+  	width:1px;
+  	background-color:transparent;
+  }

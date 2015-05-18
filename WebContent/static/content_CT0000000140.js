@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-11-13","ChannelCode":"C0033","R15":"","ContentTitle":"123123","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>123123<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"U00000002","R2":"","ContentFrom":"111(个人)","R3":"","SerialNo":"CT0000000140","ContentTxt":"123123","IssueTime":"22:00:34"};

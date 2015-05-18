@@ -1,0 +1,1 @@
+var voteinfo={"R15":"","R13":"","R1":"","R14":"","R11":"","R12":"","R10":"","itemlist":[],"R8":"","R9":"","VoteTitle":"调查问卷3","R6":"","R7":"","EndDate":"2014-09-25","DisplayFlag":"Y","AnonyFlag":"N","StartDate":"2014-09-23","R4":"","R5":"","R2":"","R3":"","VoteNo":"V000004","VoteType":""};

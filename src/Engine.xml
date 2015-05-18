@@ -1,0 +1,23 @@
+<server> 
+    <GlobalHandle>
+        <RequestHandle>
+            <Handle name="log" type="com.sinosoft.service.handle.LogHandle">
+                <init-param>
+                    <param-name>file</param-name>
+                    <param-value></param-value>
+                </init-param>
+            </Handle>
+        </RequestHandle>
+        <ResponseHandle></ResponseHandle>
+    </GlobalHandle>
+    <Service name="chnlmgt" type="com.sinosoft.lis.admin.ChnlMgtBL"></Service>
+    <Service name="votemgt" type="com.sinosoft.lis.admin.VoteMgtBL"></Service>
+    <Service name="usermgt" type="com.sinosoft.lis.admin.UserMgtBL"></Service>    
+    <Service name="sellermgt" type="com.sinosoft.lis.admin.SellerMgtBL"></Service>    
+    <Service name="prdmgt" type="com.sinosoft.lis.admin.PrdMgtBL"></Service>    
+    <Service name="sugmgt" type="com.sinosoft.lis.admin.SugMgtBL"></Service>    
+    <Service name="assmgt" type="com.sinosoft.lis.admin.AssMgtBL"></Service>    
+    <Service name="assactmgt" type="com.sinosoft.lis.admin.AssActMgtBL"></Service>    
+    <Service name="contentmgt" type="com.sinosoft.lis.admin.ContentMgtBL"></Service>    
+    <Service name="sellerclassmgt" type="com.sinosoft.lis.admin.SellerClassMgtBL"></Service>    
+</server>

@@ -1,0 +1,1 @@
+var voteinfo={"R15":"","R13":"","R1":"","R14":"","R11":"","R12":"","R10":"","itemlist":[],"R8":"","R9":"","VoteTitle":"对小区的管理是否满意","R6":"","R7":"","EndDate":"2014-11-30","DisplayFlag":"Y","AnonyFlag":"N","StartDate":"2014-11-21","R4":"","R5":"","R2":"","R3":"","VoteNo":"V000009","VoteType":""};

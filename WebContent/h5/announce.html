@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>通告通知</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/jquery-jtemplates.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+    <script src="./js/pageCommon.js"></script>
+</head>
+<script>
+
+    $(function(){
+
+        /*全局变量，保存检索条件*/
+        keywords = "";//关键字检索，可不传
+        sorttype = "d" ;//排序类型，必须传值，d-距离,p-价格,默认按距离
+        prdtype = ""//二级分类，可不传，不传则不按照二级分类筛选
+        $("#businessSearchHeader").hide();//隐藏头部查询栏部分
+        $(".select-cond").hide().attr("status","0");//隐藏筛选按钮部分
+
+        /*需要输入内容的查询按钮点击事件*/
+        $("#toSearch").click(function(){
+            $("#businessHeader").hide();
+            $("#businessSearchHeader").show().attr("status","1");
+        });
+
+        /*页面加载时创建一次jtemplate模板，此后都是给模板赋值*/
+        (function createTemplate(){
+            var annouArr = [];
+            for(var i=0;i<9;i++){
+                var style="" ;
+                if(i%2==0){
+                    style = "odd-item"
+                }
+                annouArr.push({
+                    "title":"通告1",
+                    "content":"通知内容...",
+                    "type":"社区通告",
+                    "time":"2014-8-12 ",
+                    "creator":"物业",
+                    "style":style
+                });
+            }
+            // 附上模板
+            $("#sellerlist").setTemplateElement("template");
+            // 给模板加载数据
+            $("#sellerlist").processTemplate(annouArr);	/*d.rd.data.sellerlist*/
+        })();
+
+
+        /*获取位置信息*/
+        var geolocation = new BMap.Geolocation();
+        var userPosition = "116.404|39.915";
+        //alert(keywords+"  "+prdtype);
+        geolocation.getCurrentPosition(function(r){
+            if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                userPosition = r.point.lng+"|"+r.point.lat;
+                localStorage.userPosition = userPosition;
+            }else{
+                if(localStorage.userPosition){
+                    userPosition = localStorage.userPosition;
+                }
+            }
+        },{enableHighAccuracy: true});
+    });
+</script>
+<style>
+
+</style>
+<body>
+
+<header id="businessHeader">
+    <div class="select-back">
+        <a href="busines.html">
+            <span  class="back-icon"></span><br>
+            返回
+        </a>
+    </div>
+    公告通知
+    <div class="search">
+        <a id="toSearch" class="button-icon search-icon"></a>
+    </div>
+
+</header>
+<header id="businessSearchHeader">
+    <div class="select-back">
+        <a href="busines.html">
+            <span  class="back-icon"></span><br>
+            返回
+        </a>
+    </div>
+    <div class="right-search">
+        <div class="wrap-up">
+            <input id="searchinput" placeholder=" 搜索服务">
+        </div>
+        <div class="wrap-down"></div>
+        <div class="fix-search">
+            <div><a href="#" id="search" class="button-icon search-icon2"></a></div>
+            <div class="fix-search-down"></div>
+        </div>
+
+    </div>
+    <div class="select-cond">
+        <span class="distance">按距离</span>
+        <span class="price">按价格</span>
+    </div>
+</header>
+
+<main class="business" style="padding-top: 66px;">
+    <ul class="activity-list" id="sellerlist">
+    <textarea id="template" style="display:none">
+    {#foreach $T as record}
+        <li class="{$T.record.style}">
+            <a href="#">
+                <div class="left">
+                    <div class="left-up">
+                        <div class="shop">{$T.record.title}</div>
+                        <div>
+                            {$T.record.content}
+                        </div>
+                    </div>
+                    <div class="left-down">
+                        <div class="dowm-item1">发布时间：{$T.record.time}</div>
+                        <div class="dowm-item">类型：{$T.record.type}</div>
+                        <div class="dowm-item">创建人：{$T.record.creator}</div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {#/for}
+    </textarea>
+    </ul>
+</main>
+<footer>
+    <ul>
+        <li class="side-item"></li>
+        <li>
+            <a  href="activities.html">
+                <span class="button-icon activity-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a class="selected" href="#">
+                <span class="button-icon business-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a  href="selfzoom.html">
+                <span class="button-icon selfzoom-icon"></span>
+            </a>
+        </li>
+        <li class="side-item"></li>
+    </ul>
+</footer>
+<script>
+    $(function () {
+        $(window).scroll(function () {
+            $("footer").animate({bottom: "0"}, "fast");
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-12-01","ChannelCode":"C0019","R15":"","ContentTitle":"红色旅行","R13":"","R1":"N","R14":"","R11":"","ContentHtml":"<p>设置<br/><\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"A00000015","R2":"","ContentFrom":"(社团)","R3":"","SerialNo":"CT0000000187","ContentTxt":"设置","IssueTime":"11:51:54"};

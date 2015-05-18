@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-11-11","ChannelCode":"C0041","R15":"","ContentTitle":"双11大减价","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>大家开来抢购！<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"街道办","R3":"","SerialNo":"CT0000000147","ContentTxt":"大家开来抢购！","IssueTime":"17:31:44"};

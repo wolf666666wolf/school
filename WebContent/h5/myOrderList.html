@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>个人中心</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/self-menu.js"></script>
+
+    <script src="./js/pageCommon.js"></script>
+    <script type="text/javascript" src="js/quo.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/jquery-jtemplates.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+</head>
+<style>
+
+</style>
+<script>
+    var optionDom;
+    $(function(){
+        if(!localStorage.userinfo){
+            window.location.href = "bind-mine.html";
+        }
+        /*页面加载时创建一次jtemplate模板，此后都是给模板赋值*/
+        (function createTemplate(){
+            // 附上模板orderlist
+            $("#orderlist").setTemplateElement("template");
+
+        })();
+        var userInfo = JSON.parse(localStorage.userinfo);
+        var userPosition ;
+        if(localStorage.userPosition){
+            userPosition = localStorage.userPosition;
+            /*接口调用*/
+            po('user','getorderlist',{"UserID":userInfo.UserID,"OrderID":"","UserPosition":userPosition,"SellerID":""},"getorderlistcallback");
+        }else{
+            /*获取位置信息*/
+            var geolocation = new BMap.Geolocation();
+            var userPosition = "116.404|39.915";
+            geolocation.getCurrentPosition(function(r){
+                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                    //alert('您的位置：'+r.point.lng+','+r.point.lat);
+                    userPosition = r.point.lng+"|"+r.point.lat;
+                    localStorage.UserPosition = userPosition;
+                }
+                else {
+                    if(localStorage.userPosition){
+                        userPosition = "116.404|39.915";
+                    }
+                }
+                /*接口调用*/
+                po('user','getorderlist',{"UserID":userInfo.UserID,"OrderID":"","UserPosition":userPosition,"SellerID":""},"getorderlistcallback");
+            },{enableHighAccuracy: true});
+        }
+
+        /*getfollowlist*/
+    });
+
+    //获取订单列表回调函数
+    function getorderlistcallback(d){
+       // alert(JSON.stringify(d));
+        if(d.rd.succ){
+            var fl = d.rd.data.orderlist;
+            for(var i = 0;i<fl.length;i++){
+
+                /*if(fl[i]["PrdName"]&&fl[i]["PrdName"].length>5){
+                 fl[i]["PrdName"] = fl[i]["PrdName"].substr(0,4)+"...";
+                 }*/
+                /*alert(fl[i]["R2"].substr(0,3))*/
+                fl[i]["LiClass"]="";
+                if(fl[i]["R2"].substr(0,3)=="已完成"){
+                    fl[i]["LiClass"]="selected";
+                }
+            }
+
+            //以下采用jtemplates的方式进行模板的拼接
+            // 给模板加载数据
+            $("#orderlist").processTemplate(fl);	/*d.rd.data.sellerlist*/
+        }else{
+            alert(d.rd.msg);
+        }
+    }
+</script>
+<body>
+
+<header>
+    个人中心
+</header>
+<div class="self-menu">
+    <div id="menu" class="menu" >
+        <ul>
+            <li class="first-item " style="margin-left: 1%"><a href="selfzoom.html">我的中心</a></li>
+            <li><a href="my-info.html">个人信息</a></li>
+            <li class="right-border0 selected" style="margin-right: 1%"><a href="#">订单信息</a></li>
+            <li class="margin-left" style="margin-left: 1%"><a href="myactivity.html">我的活动</a></li>
+            <li class=""><a href="mysave.html">我的收藏</a></li>
+            <li class="right-border0" style="margin-right: 1%"><a href="mylike.html">我的关注</a></li>
+        </ul>
+    </div>
+    <div class="move-left" id="moveleft"><a ></a></div>
+    <div class="move-right" id="moveright"><a ></a></div>
+</div>
+<main class="mysave">
+    <ul id="orderlist">
+        <textarea id="template" style="display:none">
+            {#foreach $T as record}
+            <li class="{$T.record.LiClass}" prd="{$T.record.PrdID}">
+            <span>
+                <a href="order-info.html?id={$T.record.OrderID}" style="border-radius: 50%;background:url('img/orderBg.png');background-position: center;background-size: cover">
+                    <!--<img width="100%" src="img/save-good.png">-->
+                    <div class="info" style="border-radius: 50%">
+                        <span class="info-txt">
+                        <h1 class="title">{$T.record.PrdName}</h1>
+                        <h4 class="content1">订单状态：{$T.record.OrderStatus}</h4>
+                        <h4 class="content2">预约日期：{$T.record.OrderDate}</h4>
+                        <h4 class="content3">数量：{$T.record.Count}</h4>
+                    </span>
+                    </div>
+                </a>
+            </span>
+            </li>
+            {#/for}
+        </textarea>
+    </ul>
+</main>
+<footer>
+    <ul>
+        <li class="side-item"></li>
+        <li>
+            <a  href="activities.html">
+                <span class="button-icon activity-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a  href="busines.html">
+                <span class="button-icon business-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a class="selected"  href="selfzoom.html">
+                <span class="button-icon selfzoom-icon"></span>
+            </a>
+        </li>
+        <li class="side-item"></li>
+    </ul>
+</footer>
+<script>
+    $(function () {
+        $(window).scroll(function () {
+            $("footer").animate({bottom: "0"}, "fast");
+        });
+    });
+</script>
+</body>
+</html>

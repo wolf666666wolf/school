@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-11-13","ChannelCode":"C0031","R15":"","ContentTitle":"华联20周年庆，大抽奖！","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>华联20周年庆，大抽奖！<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"S00000016","R2":"","ContentFrom":"华联(商家)","R3":"","SerialNo":"CT0000000160","ContentTxt":"华联20周年庆，大抽奖！","IssueTime":"09:10:04"};

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>绑定手机号</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="./js/jquery-1.11.1.min.js"></script>
+    <script src="./js/pageCommon.js"></script>
+    <script src="./js/common.js?1"></script>
+</head>
+    <script>
+
+    
+    
+        $(function(){
+            if(localStorage.userinfo){
+               window.location.href="busines.html";
+            }
+            //发送验证码
+            $("#getcode").click(function(){
+                if($(this).attr("canuse")!="1"){
+                    return;
+                }
+                var phonenum = $("#phonenum").val().trim();
+                if(phonenum=='')
+                {
+                    alert('请填写手机号');
+                    return;
+                }
+                var length = phonenum.length;
+                var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+                if(length =! 11 || ! mobile.test(phonenum)){
+                    alert("请输入正确手机号");
+                    return;
+                }
+
+                data={
+                    Phone:phonenum
+                };
+                po('user','sendcode',data,"verifycodeCallback");
+            });
+            //绑定点击事件
+            $("#sub").click(function(){
+                //取得控件的值
+                var phonenum = $("#phonenum").val();
+                var verifycode = $("#verifycode").val();
+                //进行校验
+                if(phonenum=='')
+                {
+                    alert('请填写手机号');
+                    return;
+                }
+                var length = phonenum.length;
+                var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+                if(length =! 11 || ! mobile.test(phonenum)){
+                    alert("请输入正确手机号");
+                    return;
+                }
+                if(verifycode=='')
+                {
+                    alert('请填写验证码');
+                    return;
+                }
+                if(verifycode.length!=6){
+                    alert("请输入完整的验证码");
+                    return;
+                }
+                //校验完毕，组成调用接口的参数
+                var data={
+                    Phone:phonenum,
+                    VerifyCode:verifycode
+                };
+                //调用接口，a=user,o=userbind,data就是文档中的d，是要传输的数据，userbindcallback是回调方法
+                po('user','userbind',data,"userbindcallback");
+
+            });
+        });
+
+        function verifycodeCallback(d)
+        {
+            //alert(JSON.stringify(d));"验证码已发送至手机"
+            if(d.rd.succ){
+                alertMsg("body",d.rd.msg,"40%","30%","#364E86","1.5em","49%");
+                $("#getcode").css("background","#6981B9");
+                $("#getcode").attr("canuse","0");
+                setTimeout(function(){
+                    $("#getcode").css("background","#374F87");
+                    $("#getcode").attr("canuse","1");
+                },120000);
+            }else{
+                alertMsg("body",d.rd.msg,"40%","30%","#364E86","1.5em","49%");
+            }
+        }
+
+        function userbindcallback(d)
+        {
+            console.dir(d);
+            //alert(JSON.stringify(d));
+            if(d.rd.succ)
+            {
+                //如果绑定成功，存储用户信息到本地
+                //将返回的用户信息转换成字符串，存储在本地缓存localStorage的Key值为userinfo中
+                localStorage.userinfo=JSON.stringify(d.rd.data.userinfo);
+                //可以使用下面的方法进行用户的取值
+                //var user = JSON.parse(localStorage.userinfo);
+                //alert(user.UserName);
+                alertMsg("body",d.rd.msg,"48%","30%","#364E86","1.5em","49%");
+                /*alert(d.rd.msg);*/
+                //界面跳转,假设跳转到搜索页
+
+                setTimeout(function(){
+                     window.location.href="busines.html";
+                },1700);
+
+            }
+
+            {
+                alertMsg("body",d.rd.msg,"48%","30%","#364E86","1.5em","49%");
+            }
+        }
+
+
+    </script>
+
+<body id="bind">
+<header>
+    <div class="select-back">
+        <a href="#">
+            <span href="#" class="back-icon"></span><br>
+            返回
+        </a>
+    </div>
+    绑定手机号
+</header>
+<main class="bind" >
+    <form method="post" action="activities.html" style="font-size:1.6em;">
+        <p>手机号</p>
+        <input id="phonenum" type="text" placeholder="输入您的手机号">
+        <p>验证码</p>
+        <input id="verifycode" type="text" placeholder="输入6位手机验证码"><a id="getcode" href="#" canuse="1">获取验证码</a>
+        <div style="clear: both"></div>
+        <a id="sub">确定</a>
+    </form>
+</main>
+
+
+
+</body>
+</html>

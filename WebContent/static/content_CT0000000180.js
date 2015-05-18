@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-11-19","ChannelCode":"C0031","R15":"","ContentTitle":"双11大减价！冬青3","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>双11大减价！<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"S00000026","R2":"","ContentFrom":"冬青3(商家)","R3":"","SerialNo":"CT0000000180","ContentTxt":"双11大减价！","IssueTime":"15:44:58"};

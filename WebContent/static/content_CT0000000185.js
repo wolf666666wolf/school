@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"","ChannelCode":"C0041","R15":"","ContentTitle":"第三轮群众路线会议即将开始","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>第三轮群众路线会议即将开始！<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"","R3":"","SerialNo":"CT0000000185","ContentTxt":"第三轮群众路线会议即将开始！","IssueTime":""};

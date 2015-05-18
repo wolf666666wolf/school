@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>一刻钟商圈</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script src="./js/common.js?112"></script>
+    <script src="./js/jquery-jtemplates.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+    <script src="./js/pageCommon.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link href="css/showLoading.css" rel="stylesheet" media="screen" />
+    <script type="text/javascript" src="js/jquery.showLoading.min.js"></script>
+</head>
+<script>
+/*全局变量，保存检索条件*/
+var keywords = "";//关键字检索，可不传
+var sorttype = "d" ;//排序类型，必须传值，d-距离,p-价格,默认按距离
+var prdtype = ""//二级分类，可不传，不传则不按照二级分类筛选
+var userPosition;
+if(!localStorage.userinfo){
+    window.location.href="bind-mine.html";
+}
+
+function wxcalback(d)
+{
+	wx.config({
+	    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+	    appId: d.rd.data.appId, // 必填，公众号的唯一标识
+	    timestamp: d.rd.data.timestamp, // 必填，生成签名的时间戳
+	    nonceStr: d.rd.data.nonceStr, // 必填，生成签名的随机串
+	    signature: d.rd.data.signature,// 必填，签名，见附录1
+	    jsApiList: ["getLocation"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	});
+	wx.ready(function(){
+	    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+		wx.getLocation({
+		    success: function (res) {
+		        var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+		        var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+		        var speed = res.speed; // 速度，以米/每秒计
+		        var accuracy = res.accuracy; // 位置精度
+		        //alert(latitude+longitude);
+		        localStorage.res=JSON.stringify(res);
+		        localStorage.userPosition=res.longitude+"|"+res.latitude;
+		        userPosition = localStorage.userPosition?localStorage.userPosition:"116.404|39.915";
+				//alert(userPosition);
+		        var dataSeller={
+		                KeyWords:keywords,
+		                SortType:'p',
+		                PrdType:prdtype,
+		                "UserPosition":userPosition
+		            };
+		            /*获取热服务商家列表*/
+		            po('seller','getsellerlist',dataSeller,"getsellercallback");
+		    	//alert("2--"+localStorage.res);
+		    }
+		});
+	});
+	wx.error(function(res){
+		//alert(2);
+	    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+	});
+}
+
+$(function(){
+    $("#businessSearchHeader").hide();//隐藏头部查询栏部分
+    $("#businessHeader .select-cond").hide().attr("status","0");//隐藏筛选按钮部分
+    $(".menu-mask").hide().attr("status","0");//隐藏下拉菜单的遮罩层
+    $(".rankOne").hide().attr("status","0");//隐藏下拉菜单
+    $(".rankTwo").hide().attr("status","0");//隐藏二级菜单
+    /*显示正在加载的效果*/
+    //alert(2222);
+    //$('main').showLoading();
+
+    /*获取所有分类信息*/
+    po("seller","getchnllist",{},"getchnlCallBack");
+
+
+
+    $(".loading-indicator-overlay").click(function(){
+        $('main').hideLoading();
+        userPosition = localStorage.userPosition?localStorage.userPosition:"116.404|39.915";
+        var dataSeller={
+            KeyWords:keywords,
+            SortType:'p',
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        /*获取热服务商家列表*/
+        po('seller','getsellerlist',dataSeller,"getsellercallback");
+    });
+    
+    if(localStorage.res==null||localStorage.res==''||localStorage.res==undefined)
+	{
+		var data = {
+				url:window.location.href
+		};
+		po('weixin','getcofig',data,"wxcalback");
+	}
+    else
+    {
+    	userPosition = localStorage.userPosition?localStorage.userPosition:"116.404|39.915";
+		//alert(userPosition);
+        var dataSeller={
+                KeyWords:keywords,
+                SortType:'p',
+                PrdType:prdtype,
+                "UserPosition":userPosition
+            };
+            /*获取热服务商家列表*/
+            po('seller','getsellerlist',dataSeller,"getsellercallback"); 	
+   	}
+        /*
+    var geolocation = new BMap.Geolocation();
+
+    userPosition =localStorage.userPosition?localStorage.userPosition:"116.404|39.915";
+    localStorage.userPosition = userPosition;
+
+    ///获取位置信息
+    geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            //alert('您的位置：'+r.point.lng+','+r.point.lat);
+            userPosition = r.point.lng+"|"+r.point.lat;
+            localStorage.userPosition = userPosition; 
+        }else{
+            alertMsg("main","获取位置信息失败","30%","#ffffff","18px","50%");
+        }
+        var dataSeller={
+            KeyWords:keywords,
+            SortType:'p',
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        ///获取热服务商家列表
+        po('seller','getsellerlist',dataSeller,"getsellercallback");
+    },{enableHighAccuracy: true});
+
+***/
+    //页面点击收起菜单
+    $(document).click(function(e) {
+        var $menu1 =  $(".business-menu>.fixedMenu>ul>li.service");
+        var  $menu2 = $(".select-icon");
+        var $menu3 = $("#menuList");
+        var jud1 = !(e.target == $menu1[0] || $.contains($menu1[0], e.target));
+        var jud2 = !(e.target == $menu2[0] || $.contains($menu2[0], e.target));
+        var jud3 = !(e.target == $menu3[0] || $.contains($menu3[0], e.target));
+        if(jud1&&jud2&&jud3) {
+            takeBackMenus();
+        }
+    });
+
+
+    /*需要输入内容的查询按钮点击事件*/
+    $("#toSearch").click(function(){
+        if($(this).attr("useful")=="n"){
+            return;
+        }
+        $("#businessHeader").remove();
+        $("#businessSearchHeader").show().attr("status","1");
+    });
+
+    /*最热服务按钮点击*/
+    $("#hotest").click(function(){
+        takeBackMenus();
+        po('seller','gethotsellerlist',{"UserPosition":userPosition},"getsellercallback");
+    })
+
+    /*收起所有菜单*/
+    function takeBackMenus(){
+        /*收起筛选菜单*/
+        $(".menu-mask").hide().attr("status","0");//隐藏遮罩层
+        $(".rankOne").hide().attr("status","0");//隐藏下拉菜单
+        $(".select-icon").attr("useful","y");//改变筛选按钮样式
+        $("#toSearch").attr("useful","y");//搜索按钮可用
+        $("#search").attr("useful","y");//搜索按钮可用
+        /*收起便民服务菜单*/
+        $(".select-icon").css("background-position","0 -48em");
+        $(".select-cond").hide();
+        $(".select-cond").attr("status","0");
+        $("#toSearch").attr("useful","y");//搜索按钮不可用
+        $("#search").attr("useful","y");//搜索按钮不可用
+    }
+    /*页脚15'点击效果*/
+    $("#selfBtn").click(function(){
+        takeBackMenus();
+        var dataSeller={
+            "KeyWords":"",
+            "SortType":'d',
+            "PrdType":"",
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',dataSeller,"getsellercallback");
+
+    });
+
+    /*便民服务按钮点击事件*/
+    $(".business-menu>.fixedMenu>ul>li.service").click(function(){//
+        var rankOneArr = $("#menuList").find("li");
+        var lih =  $("#menuList").find("li").eq(0).height();
+        var menuH = 20+lih*(1+rankOneArr.length)+$(".footer").height()*1.5 ;
+        if($(".menu-mask").attr("status")=="0"){//判断遮罩层现实情况0：隐藏；1：显示
+            $(".menu-mask").show().attr("status","1");//显示遮罩层
+            $(".rankOne").show().attr("status","1");//显示下拉菜单
+            $(".select-icon").css("background-position","0 -51.8em").attr("useful","n");//改变筛选按钮样式
+            $("#toSearch").attr("useful","n");//搜索按钮不可用
+            $("#search").attr("useful","n");//搜索按钮不可用
+            $(".select-cond").hide().attr("status","0");//改变筛选框样式
+        }else{
+            $(".menu-mask").hide().attr("status","0");//隐藏遮罩层
+            $(".rankOne").hide().attr("status","0");//隐藏下拉菜单
+            // $("main.business").height(bodyH);//调整页面高度
+            $(".select-icon").attr("useful","y");//改变筛选按钮样式
+            $("#toSearch").attr("useful","y");//搜索按钮可用
+            $("#search").attr("useful","y");//搜索按钮可用
+        }
+
+        /*$(".distance").css("color","#ffffff");//改变筛选框按钮样式
+         $(".price").css("color","#ffffff");//改变筛选框按钮样式*/
+
+    });
+
+
+
+    /*便民服务二级菜单按钮点击事件*/
+    $(document).on("click",".business-menu .rankOne>ul>li>div.rankTwo>div",function(){
+        $(this).siblings("div").removeClass("selected")
+        $(this).addClass("selected");
+        // alert($(this).attr("serialno"));
+        //收起菜单（触发便民服务按钮点击事件）
+        setTimeout(function(){
+            $(".business-menu>.fixedMenu>ul>li.service").trigger("click");
+        },500);
+        //根据分类号查询商家列表
+        prdtype = $(this).attr("serialno") ;//保存分类号
+        var data={
+            KeyWords:keywords,
+            SortType:sorttype,
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',data,"getsellercallback");
+    });
+
+
+
+
+    /*筛选按钮点击事件*/
+    $(".select-icon").click(function(){
+        if($(this).attr("useful")=="n"){
+            return;
+        }
+
+        if( $(".select-cond").attr("status")=="0"){//判断显示情况0：隐藏；1：显示
+            $(".select-icon").css("background-position","0 -52.8em");
+            $(".select-cond").show();
+            $(".select-cond").attr("status","1");
+            $("#toSearch").attr("useful","n");//搜索按钮不可用
+            $("#search").attr("useful","n");//搜索按钮不可用
+            return;
+        }else{
+            $(".select-icon").css("background-position","0 -48em");
+            $(".select-cond").hide();
+            $(".select-cond").attr("status","0");
+            $("#toSearch").attr("useful","y");//搜索按钮不可用
+            $("#search").attr("useful","y");//搜索按钮不可用
+            return;
+        }
+
+    });
+
+    /*按距离筛选的按钮点击事件*/
+    $(".distance").click(function(){
+        $(".distance").css({"color":"#6478A0","background":"#93A0C1"});
+        $(".price").css({"color":"#ffffff","background":"#374F87"});
+        sorttype = 'd' ;//保存排序
+        var data={
+            KeyWords:keywords,
+            SortType:'d',
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',data,"getsellercallback");
+    });
+
+    /*按价格筛选的按钮点击事件*/
+    $(".price").click(function(){//按价格筛选的按钮点击事件
+        $(".price").css({"color":"#6478A0","background":"#93A0C1"});
+        $(".distance").css({"color":"#ffffff","background":"#374F87"});
+        sorttype = 'p' ;//保存排序
+        var data={
+            KeyWords:keywords,
+            SortType:'p',
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',data,"getsellercallback");
+    });
+
+    /*搜索按钮点击触发按条件查询事件*/
+    $("#search").click(function(){
+        if($(this).attr("useful")=="n"){
+            return;
+        }
+        keywords = $("#searchinput").val();//保存关键字
+
+        prdtype = "";//清空分类信息
+        var data={
+            KeyWords:keywords,
+            SortType:sorttype,
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',data,"getsellercallback");
+    });
+
+
+    /*页面加载时创建一次jtemplate模板，此后都是给模板赋值*/
+    (function createTemplate(){
+        // 附上模板
+        $("#sellerlist").setTemplateElement("template");
+
+    })();
+});
+//商户信息回调函数
+function getsellercallback(d){
+    //alert(keywords+"  "+sorttype+" "+prdtype);
+    //alert(JSON.stringify(d));
+    if(d.rd.succ){
+        //alert(d.rd.data.sellerlist.length);
+        //以下采用jtemplates的方式进行模板的拼接
+        var sl = d.rd.data.sellerlist;
+        //循环
+        for(var i=0;i<sl.length;i++){
+            //判断行是奇数还是偶数，并将对应的class写入到json中，供下面绑定模板时候使用
+            var style="odd-item";
+            if(i%2!=0){
+                style="even-item";
+            }
+            sl[i]["style"]=style;
+            //判断商家是否已认证，并将json改为相应的class
+            if(sl[i]["AuthFlag"]=="Y"){
+                sl[i]["AuthFlag"]="sign signR-icon";
+            }else{
+                sl[i]["AuthFlag"]=" ";
+            }
+            //判断评价值，并将值转化为相应的样式写入新数组，加入json
+
+            if(!sl[i]["R4"]){/*预订数*/
+                sl[i]["R4"]="--";
+            }
+            if(!sl[i]["R7"]){/*点评数*/
+                sl[i]["R7"]="--";
+            }
+
+            // alert(sl[i]["TelPhone"]);
+            var level = 0;
+            //alert(sl[i]["R5"])
+            if(sl[i]["R6"]){
+                var level = sl[i]["R6"];
+            }
+            var stararr = [];
+            for(j=1;j<=5;j++){
+                if(level-j>=0){
+                    stararr.push({"starType":"full-icon"});
+                }
+                if(level-j==-0.5){
+                    stararr.push({"starType":"half-icon"})
+                }
+                if(level-j<=-1){
+                    stararr.push({"starType":"blank-icon"})
+                }
+            }
+            //console.dir(stararr) ;控制台查看值
+            sl[i]["stararr"]=stararr;
+        }
+        // 给模板加载数据
+        $("#sellerlist").processTemplate(sl);	/*d.rd.data.sellerlist*/
+        /*隐藏正在加载的效果*/
+        $('main').hideLoading();
+    }else{
+        alert(d.rd.msg);
+    }
+}
+//下拉菜单回调函数
+function getchnlCallBack(d){
+    //alert(JSON.stringify(d))
+    if(d.rd.succ){
+        var cl = d.rd.data.channellist;
+        //以下采用jtemplates的方式进行模板的拼接
+        //循环
+        var rankOneArr = [];
+        for(var i=0;i<cl.length;i++){
+            //判断是否为一级菜单
+            if(cl[i]["ParentChannel"]=="C0012"){
+                /*调用函数获取二级菜单*/
+                var rankTwoArr = findRankTwo(cl,cl[i]["SerialNo"]);
+                var hasranktwo = "n";
+                var arrow = "arrow-none";
+                var rankTwoLength = 0;
+                if(rankTwoArr.length>0){
+                    hasranktwo = "y";
+                    arrow = "arrow-left";
+                    rankTwoLength = rankTwoArr.length;
+                }
+                cl[i]["hasranktwo"] = hasranktwo;
+                cl[i]["arrow"] = arrow;
+                cl[i]["rankTwoArr"] = rankTwoArr;
+                cl[i]["rankTwoLength"] = rankTwoLength;
+                rankOneArr.push(cl[i]);
+            }
+        }
+        //alert(JSON.stringify(rankOneArr));
+        //调用方法创建菜单
+        createMenu(rankOneArr);
+
+    }
+
+
+}
+
+/*创建菜单方法*/
+function createMenu(rankOneArr){
+    // alert(JSON.stringify(rankOneArr));
+    var $menuUl =  $("#menuList");
+
+    for(i in rankOneArr){
+        var $menuLi = $("<li onclick='rankOneClick(this);'>"+rankOneArr[i]["ChannelName"]+"</li>").attr({"serialno":rankOneArr[i]["SerialNo"],"hasranktwo":rankOneArr[i]["hasranktwo"]});
+        var $arrowIcon = $("<div ></div>").addClass(rankOneArr[i]["arrow"]);
+        var $rankTwo = $("<div class='rankTwo'></div>").hide().attr("status","0");
+        /*$(".rankTwo").hide().attr("status","0");//隐藏二级菜单*/
+        if(rankOneArr[i]["rankTwoArr"].length>0){
+            for(j in rankOneArr[i]["rankTwoArr"]){
+                var $rankTwoItem = $(" <div>"+rankOneArr[i]["rankTwoArr"][j]["ChannelName"]+"</div>").attr("SerialNo",rankOneArr[i]["rankTwoArr"][j]["SerialNo"]);
+                $rankTwo.append($rankTwoItem);
+            }
+        }
+        $menuLi.append($arrowIcon);
+        $menuLi.append($rankTwo);
+        $menuUl.append($menuLi);
+    }
+}
+
+/*便民服务一级菜单按钮点击事件*/
+function rankOneClick(obj){
+
+    if($(obj).attr("hasRankTwo")=="y"){//如果包含二级菜单
+        $(obj).siblings("li").find(".rankTwo").hide().attr("status","0");//同级菜单处理
+        $(obj).siblings("li").removeClass("selected");
+        $(obj).addClass("selected");//设置选中
+        $(obj).find(".rankTwo").show().attr("status","1");//下一级菜单显示
+
+    }else{//如果不包含二级菜单
+
+        $(obj).siblings("li").find(".rankTwo").hide().attr("status","0");
+        $(obj).siblings("li").removeClass("selected")
+        $(obj).addClass("selected");
+        //收起菜单（触发便民服务按钮点击事件）
+        setTimeout(function(){
+            $(".business-menu>.fixedMenu>ul>li.service").trigger("click");
+        },500);
+        if($(obj).attr("id")=="all"){
+            prdtype="";
+        }else{
+
+            prdtype = $(obj).attr("serialno") ;//保存分类号
+        }
+
+        //根据分类号查询商家列表
+        // alert($(this).attr("serialno"));
+
+        var data={
+            KeyWords:keywords,
+            SortType:sorttype,
+            PrdType:prdtype,
+            "UserPosition":userPosition
+        };
+        //调用接口，a=seller,o=getsellerlist,data就是文档中的d，是要传输的数据，getsellercallback是回调方法
+        po('seller','getsellerlist',data,"getsellercallback");
+    }
+}
+
+/*获取二级菜单方法*/
+function findRankTwo(chnllist,SerialNo){//传入分类列表和一级菜单编号
+    var rankTwoArr = [];
+    for(var i=0;i<chnllist.length;i++){
+        if(chnllist[i]["ParentChannel"]==SerialNo){
+            rankTwoArr.push(chnllist[i]);
+        }
+    }
+    return rankTwoArr;
+}
+
+
+</script>
+<style>
+
+</style>
+<body>
+
+<header id="businessHeader">
+    <div class="select">
+        <a>
+            <span href="#"  class="button-icon select-icon"></span>
+        </a>
+    </div>
+    一刻钟商圈
+    <div class="search">
+        <a id="toSearch" class="button-icon search-icon"></a>
+    </div>
+    <div class="select-cond" style="display: none;">
+        <span class="distance">按距离</span>
+        <span class="price">按价格</span>
+    </div>
+</header>
+<header id="businessSearchHeader" style="display: none;">
+    <div class="left-select">
+        <div class="fix-a">
+            <a>
+                <span class="button-icon select-icon"></span>
+            </a>
+        </div>
+    </div>
+    <div class="right-search">
+        <div class="wrap-up">
+            <input id="searchinput" placeholder=" 搜索服务">
+        </div>
+        <div class="wrap-down"></div>
+        <div class="fix-search">
+            <div><a href="#" id="search" class="button-icon search-icon2"></a></div>
+            <div class="fix-search-down"></div>
+        </div>
+
+    </div>
+    <div class="select-cond">
+        <span class="distance">按距离</span>
+        <span class="price">按价格</span>
+    </div>
+</header>
+<div class="business-menu">
+    <div class="fixedMenu" >
+        <ul>
+            <li class="announce" id="hotest">最热服务</li>
+            <li class="service">便民服务</li>
+        </ul>
+    </div>
+    <div class="rankOne">
+        <div class="arrow"></div>
+        <ul id="menuList">
+            <li id="all" onclick="rankOneClick(this);">所有分类</li>
+        </ul>
+    </div>
+</div>
+<main class="business">
+    <div class="menu-mask"></div>
+    <ul class="activity-list" id="sellerlist">
+        <textarea id="template" style="display:none">
+            {#foreach $T as record}
+            <li class="{$T.record.style}">
+                <a href="view-goods.html?id={$T.record.SellerID}">
+                    <div class="left">
+                        <div class="left-up">
+                            <div class="shop">{$T.record.ShotOrgName}</div>
+                            <div class=" {$T.record.AuthFlag}"></div>
+                            <div class="star-list">
+                                <ul>
+                                    {#foreach $T.record.stararr as stars}
+                                    <li class="{$T.stars.starType}"></li>
+                                    {#/for}
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="clear: both;"></div>
+                        <div class="left-down">
+                            <div class="dowm-item">距离：{$T.record.SellerDistance}</div>
+                            <div class="dowm-item">点评数：{$T.record.R7}</div>
+                            <div class="dowm-item">预订数：{$T.record.R3}</div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <a id="a_test" class="button-icon call-icon" act="call" href="tel:{$T.record.TelPhone}"></a>
+                    </div>
+                    <div class="line"></div>
+                </a>
+            </li>
+            {#/for}
+        </textarea>
+    </ul>
+</main>
+<footer>
+    <ul>
+        <li class="side-item"></li>
+        <li>
+            <a  href="activities.html">
+                <span class="button-icon activity-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a class="selected" id="selfBtn">
+                <span class="button-icon business-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a  href="selfzoom.html">
+                <span class="button-icon selfzoom-icon"></span>
+            </a>
+        </li>
+        <li class="side-item"></li>
+    </ul>
+</footer>
+<script>
+    $(function () {
+        $(window).scroll(function () {
+            $("footer").animate({bottom: "0"}, "fast");
+        });
+    });
+</script>
+
+</body>
+</html>

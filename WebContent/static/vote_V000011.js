@@ -1,0 +1,1 @@
+var voteinfo={"R15":"","R13":"","R1":"","R14":"","R11":"","R12":"","R10":"","itemlist":[],"R8":"","R9":"","VoteTitle":"对骑自行车的看法","R6":"","R7":"","EndDate":"2014-12-10","DisplayFlag":"Y","AnonyFlag":"Y","StartDate":"2014-12-05","R4":"","R5":"","R2":"","R3":"","VoteNo":"V000011","VoteType":""};

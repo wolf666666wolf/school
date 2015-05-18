@@ -1,0 +1,30 @@
+{
+"succ":"true",
+"msg":"msg",
+"data" :[
+{
+"ActID":"1",
+"Title":"活动标题1",
+"R3":"类型1",
+"AssName":"创建人",
+"StartDate":"YYYY-MM-DD",
+"StartTime":"HH:MM:SS"
+},
+{
+"ActID":"1",
+"Title":"活动标题",
+"R3":"运动",
+"AssName":"创建人",
+"StartDate":"2014-10-20",
+"StartTime":"15:30:21"
+},
+{
+"ActID":"1",
+"Title":"活动标题",
+"R3":"吃饭",
+"AssName":"小明",
+"StartDate":"2014-10-20",
+"StartTime":"15:30:21"
+}
+ ]
+ }

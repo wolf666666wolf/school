@@ -1,0 +1,383 @@
+/*--BODY的样式--*/
+body
+{
+
+font: tahoma,verdana,arial,helvetica,sans-serif;
+font-size: 12px; margin-top:0px;
+
+scrollbar-DarkShadow-Color=#94deab;
+scrollbar-3dLight-Color=#94deab;
+scrollbar-Arrow-Color=#4eaa7e;
+scrollbar-Base-Color=#f5f6f6;
+scrollbar-Face-Color=#f5f6f6;
+scrollbar-Highlight-Color=#57b185;
+scrollbar-Shadow-Color=#57b185;
+scrollbar-Track-Color="#5c307d";
+}
+form
+{
+
+	padding:0px;
+	margin:0px;
+}
+
+body.interface{font-size:12pt;background-image:url(http://172.16.80.204:8000/Images/piccSh/bgCommon.gif)}
+
+/*--TABLE的样式--*/
+table.common{width: 98%;font-size: 9pt;}
+
+table.three{width: 70%;font-size: 9pt}
+
+table.two{width: 60%;font-size: 9pt}
+
+table.menu{width: 100%;font-size: 9pt}
+
+table.sub{width: 95%;font-size:9pt}
+
+/*--TD的样式--*/
+td.common{ font-size: 9pt}
+
+td.common2{ font-size: 19pt}
+
+td.formtitle{font-size: 9pt;font-weight: bold;background-color: #4D457A;text-align: center;color: #ffffff;}
+
+td.titleImg{font-weight: bold;text-align: left;font-size: 9pt;color: #000000}
+
+td.title{text-align: left;width: 10%;color: #000000}
+
+td.title8{text-align: left;width: 10%;color: #000000}
+
+td.title2{font-size: 19pt;background-color: #CCC8E0;text-align: left;width: 10%;color: #000000}
+
+td.titles{background-color: #CCC8E0;text-align: left;width: 20%;color: #000000}
+
+td.subformtitle{background-color: #CCC8E0;text-align: left;color: #000000}
+
+td.centertitle{;text-align: center;color: #000000}
+
+td.input{width: 20%}
+
+td.input8{width: 20%}
+
+td.text{background-color: #ffffff;color: #000000}
+
+td.lefttitle{background-color: #6699CC;text-align:left;color: #FFFFFF}
+
+td.titleLink0{text-align:center;cursor: hand;background-color:#00573f;color: #ffffff}
+
+td.titleLink1{text-align:center;cursor: hand;background-color:#006c32;color: #ffffff}
+
+td.titleLink2{text-align:center;cursor: hand;background-color:#45863e;color: #ffffff}
+
+td.titleLink3{text-align:center;cursor: hand;background-color:#59af50;color: #ffffff}
+
+td.titleLink4{text-align:center;cursor: hand;background-color:#6600cc;color: #ffffff}
+
+td.itemLink{text-align:center;cursor: hand;background-color:#00573f;color: #FFFFFF}
+
+td.itemLink2{text-align:left;cursor: hand;background-color:#00c462;color: #FFFFFF}
+
+/*--TR的样式--*/
+tr.listtitle{background-color: #4D457A;text-align: center;color: #ffffff}
+
+tr.listodd{background-color: #CCC8E0;text-align: center;color: #800080}
+
+tr.listeven{background-color: #ffffff;text-align: center;color: #800080}
+
+tr.trTitle{text-align:center;height:30px;background-color:#9cceff;color:#000000;font-size:9pt}
+
+tr.trGrid{text-align:center;height:24px;background-color:#FFFFFF;color:#000000;	font-size:9pt}
+
+tr.trGridBack{text-align:center;height:24px;background-color:#FFFFFF;color:#000000;font-size:9pt}
+
+tr.trGridFront{text-align:center;height:24px;background-color:#F3F3F3;color:#000000;font-size:9pt}
+
+
+/*--INPUT的样式--*/
+
+/*input{font-size: 10pt}*/
+
+input{
+	font-size:10pt;
+	padding:0px;
+	margin:0px;
+	border-left:0px solid #fff;
+	border-right:0px solid #fff;
+	border-top:0px solid #fff;
+	border-bottom:0px solid #fff;
+}
+
+/*
+input.common{background-color: #ffffff;border: 1px #3a966a solid;height: 20px;width: 180px;}
+*/
+input.common{
+	background-color: #ffffff;
+	border:1px #5c307d solid;
+	height:20px;
+	width:180px;
+}
+input.common3{
+	background-color: #ffffff;
+	border:1px #5c307d solid;
+	height:20px;
+	width:100%;
+}
+
+input.common8{background-color: #ffffff;border: 1px #3a966a solid;height: 20px;width: 180px;}
+
+input.common2{color:#000000;background-color: #ffffff;font-weight;border: 1px #FF0000 solid;height: 20px;}
+input.code2{color:#000000;background-color: #ffffcc;font-weight;border: 1px #FF0000 solid;height: 20px;}
+input.common4{background-color: #ffffff;border: 1px #3a966a solid;height: 20px;width: 652px;}
+input.common5{background-color: #ffffff;border: 1px #799AE1 solid;height: 20px;width: 98%;}
+
+
+/*input.common6{background-color: #ffffff;border: 1px #3a966a solid;height: 20px;width: 565px;}
+*/
+input.common6{
+	background-color: #ffffff;
+	border: 1px #5c307d solid;
+	height: 20px;width: 565px;
+}
+
+input.common7{background-color: #ffffff;border: 1px #3a966a solid;height: 20px;width: 641px;}
+input.readonly{width: 180px;background-color: #ffffff;color: #000000;BORDER-TOP-WIDTH: 1px;BORDER-TOP-STYLE: solid;BORDER-TOP-COLOR: #ffffff;BORDER-BOTTOM-WIDTH: 1px;BORDER-BOTTOM-STYLE: solid;BORDER-BOTTOM-COLOR: #ffffff;BORDER-RIGHT-STYLE: none;BORDER-LEFT-STYLE: none}
+
+input.readonly3{width: 440px;background-color: #ffffff;color: #000000;BORDER-TOP-WIDTH: 1px;BORDER-TOP-STYLE: solid;BORDER-TOP-COLOR: #ffffff;BORDER-BOTTOM-WIDTH: 1px;BORDER-BOTTOM-STYLE: solid;BORDER-BOTTOM-COLOR: #ffffff;BORDER-RIGHT-STYLE: none;BORDER-LEFT-STYLE: none}
+
+input.listodd{width: 180px;background-color: #CCC8E0;color: #800080;border-style: none;hight:100px}
+
+input.listeven{width: 180px;background-color: #ffffff;color: #800080;border-style: none}
+
+input.code{background-color: #f1f8e9; border: 1px #3a966a solid;height: 20px;width: 180px}
+
+input.codeline{background-color: #ffffff; border: 0px #ffffff solid;height: 1px;width: 200px}
+
+input.code8{background-color: #D7E1F6;border: 1px #799AE1 solid;height: 20px;width: 180px}
+
+input.longcode{background-color: #D7E1F6; border: 1px #799AE1 solid;height: 20px;width: 260px}
+
+input.longcode8{background-color: #D7E1F6; border: 1px #799AE1 solid;height: 20px;width: 456px}
+
+input.longname{color: black;background-color: #f6ffff;border: 1px #9999CC solid;height: 20px;width: 300px}
+
+input.warn{background-color: #ffb900;border: 1px #9999CC solid;height: 20px;width: 180px;}
+
+input.warnno{background-color: #ffb900;border: 1px #9999CC solid;height: 20px;width: 60px;}
+
+input.keyvalue{width:180px;readonly;background-color: #A7B5D6;color: white;border-style: none}
+
+input.hcommon{color: black;background-color: #fFffff;border: 1px #9999CC solid;height: 20px;width: 82%;border-left-style:inset; border-right-style:groove ;border-top-style:inset; border-bottom-style:groove ;}
+
+input.commonverify{border: 1px #9999CC solid;COLOR: #ff0000;height: 20px;width: 82%;}
+
+input.commondate{border: 1px #9999CC solid;height: 20px;width: 65%;background-color: #f6ffff;border-left-style:inset; border-right-style:groove ;border-top-style:inset; border-bottom-style:groove ;}
+
+input.hcommondate{border: 1px #9999CC solid;height: 20px;width: 65%;background-color: #fFffff;border-left-style:inset; border-right-style:groove ;border-top-style:inset; border-bottom-style:groove ;}
+
+input.hcode{color: black;background-color: #fFffff;border: 1px #9999CC solid;border-left-style:groove; border-right-style:solid ;border-top-style:groove; border-bottom-style:solid  ;height: 20px;width: 82%;}
+
+/*input.codeno{color: black;background-color: #f1f8e9;height: 20px;width:60px;border-top: 1px #3c976b solid;border-left: 1px #3c976b solid;border-bottom: 1px #3c976b solid;border-right: 1px #9cc672 solid;}*/
+
+input.codeno{
+	/*background-color:#f8f8f8;*/
+	background-color:#caf0e1;
+	border-top:1px solid #5c307d;
+	border-bottom:1px solid #5c307d;
+	border-left:1px solid #5c307d;
+	border-right:1px solid #5c307d;
+	color:black;
+	background-color:#edeaf1;
+	height:20px;width:60px;
+}
+
+
+input.hcodeno{color: black;background-color: #edeaf1;border: 1px #5c307d solid;height: 20px;width:55px;}
+
+/*input.codename{color: black;background-color: #FFFFFF;height: 20px;width:120px;border-left: 1px #ffffff solid;border-top: 1px #3c976b solid;border-right: 1px #3c976b solid;border-bottom: 1px #3c976b solid;}*/
+
+input.codename{
+	color:black;
+	height:20px;width:120px;
+	border-top:1px solid #5c307d;
+	border-bottom:1px solid #5c307d;
+	border-right:1px solid #5c307d;
+}
+
+
+input.hcodename{color: black;background-color: #ffffff;border: 1px #799AE1 solid;height: 20px;width:130px;}
+
+input.commonserver{background-color: #ffffff;border: 1px #9999CC solid;height: 20px;width: 80%;}
+
+input.message{background-color: #ffffff;border: 1px #9999CC solid;height: 20px;width: 180px;}
+
+input.common5{background-color: #ffffff;border: 1px #9999CC solid;height: 20px;width: 100px;}
+
+input.common33{font-size: 16pt;color:#FF0000;background-color: #ffffcc;font-weight;border: 1px #000000 solid;height: 25px;}
+
+
+input.cssButton2{BORDER-RIGHT: #224a06 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #224a06 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px;
+FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#87cc89); BORDER-LEFT: #224a06 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #224a06 1px solid;}
+
+
+input.cssButton{BORDER-RIGHT: #5c307d 1px solid;PADDING-RIGHT: 2px; BORDER-TOP: #5c307d 1px solid;PADDING-LEFT: 2px;FONT-SIZE: 12px;
+FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#edeaf1);BORDER-LEFT: #5c307d 1px solid;CURSOR: hand;COLOR: black;PADDING-TOP: 2px;BORDER-BOTTOM: #5c307d 1px solid;}
+
+input.hcssButton{BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid;}
+
+input.cssButtonLong{BORDER-RIGHT: #5c307d 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #5c307d 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #5c307d 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #5c307d 1px solid;}
+
+input.hcssButtonLong{BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid;}
+
+input.cssButtonTooLong{BORDER-RIGHT: #5c307d 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #5c307d 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #5c307d 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #5c307d 1px solid;}
+
+input.hcssButtonTooLong{BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid;}
+
+input.mulButton{BORDER-RIGHT: #5c307d 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #5c307d 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #5c307d 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #5c307d 1px solid;height:18px;border:0px;}
+
+input.hmulButton{BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid;}
+
+input.login{BORDER-TOP-WIDTH: 1px;BORDER-TOP-STYLE: solid;BORDER-TOP-COLOR: white;BORDER-BOTTOM-WIDTH: 1px;BORDER-BOTTOM-STYLE: solid;BORDER-BOTTOM-COLOR: white;BORDER-RIGHT-STYLE: none;BORDER-LEFT-STYLE: none;}
+
+input.smartbutton{BORDER-RIGHT: #5c307d 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #5c307d 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #5c307d 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #5c307d 1px solid;}
+
+input.hsmartbutton{BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#685f6f); BORDER-LEFT: #ffffff 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid;}
+
+/*--TEXTAREA的样式--*/
+textarea.common{background-color: #ffffff;border: 1px #5c307d solid;}
+
+textarea.common1{border: 1px #9999CC solid;width: 98%;background-color: #f6ffff; border-left-style:inset; border-right-style:groove ;border-top-style:inset; border-bottom-style:groove ;}
+
+textarea.hcommon{border: 1px #9999CC solid;width: 98%;background-color: #fFffff; border-left-style:inset; border-right-style:groove ;border-top-style:inset; border-bottom-style:groove ;}
+
+textarea.common2{word-wrap:break-word;word-break:break-all;}
+
+textarea.code{background-color: #86AAE1;border: 1px #9999CC solid;}
+
+/*--SELECT的样式--*/
+
+select{
+    background-color: #F7F6E5;
+	color:#000000;
+	FONT-SIZE: 9pt;
+	font-family: "宋体";
+	BORDER-RIGHT: #946300 0px solid;
+	BORDER-TOP: #946300 0px solid;
+	BORDER-LEFT: #946300 0px solid;
+	BORDER-BOTTOM: #946300 0px solid;
+}
+
+select.query{width: 40px;background-color: #ffffff;border: 1px #799AE1 solid;
+}
+
+/*--A的样式--*/
+A.menu:link{text-decoration: none;color: #ffffff;}
+A.menu:visited{text-decoration: none;color: #ffffff;}
+A.menu:active{text-decoration: none;color: #ffffff;}
+A.menu:hover{text-decoration: none;color: yellow;}
+
+A:link{text-decoration: none;color: #000000;}
+A:visited{text-decoration: none;color: #000000;}
+A.active{text-decoration: none;color: #000000;}
+A:hover{text-decoration: none;color: #00A86D;}
+
+/*--IMG的样式--*/
+IMG.button{cursor:hand}
+
+/* ---------------------------------------------------- */
+/* cooDatePicker                    */
+/* ---------------------------------------------------- */
+/*.coolDatePicker
+{
+	behavior: url(../common/behaviors/coolDatePicker.htc);
+	buttonImageUrl: ../common/images/calendar.gif;
+	prevImageUrl: ../common/images/prev.gif;
+	nextImageUrl: ../common/images/next.gif;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Helvetica;
+	vertical-align: top;
+	margin: 0px;
+	border: 1px #3a966a solid;
+	padding: 1px;
+	height: 20px;
+	width: 180px;
+	background-color: #ffffff;
+}*/
+
+.coolDatePicker
+{
+	behavior: url(../common/behaviors/coolDatePicker.htc);
+	buttonImageUrl: ../common/images/calendar.gif;
+	prevImageUrl: ../common/images/prev.gif;
+	nextImageUrl: ../common/images/next.gif;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Helvetica;
+	vertical-align: top;
+	margin: 0px;
+	border: 1px #5c307d solid;
+	padding: 1px;
+	height: 20px;
+	width: 150px;
+	background-color: #ffffff;
+}
+
+
+.coolDatePickerLeftHeader,
+.coolDatePickerCenterHeader,
+.coolDatePickerRightHeader,
+.coolDatePickerDay,
+.coolDatePickerDate
+{
+/*	background-color: buttonface;*/
+	background-color: #ffffff;
+	border-right: buttonshadow 1px solid;
+	border-top: buttonhighlight 1px solid;
+	border-left: buttonhighlight 1px solid;
+	border-bottom: buttonshadow 1px solid;
+	position: absolute;
+	text-align: center;
+	font: bolder 8pt Verdana;
+	height: 18px;
+	width: 19px;
+}
+.coolDatePickerLeftHeader
+{
+	left: 0px;
+	cursor: hand;
+}
+.coolDatePickerCenterHeader
+{
+	padding-top: 1px;
+	width: 95px;
+	left: 19px;
+	cursor: default;
+}
+.coolDatePickerRightHeader
+{
+	left: 114px;
+	cursor: hand;
+}
+.coolDatePickerDay
+{
+	padding-top: 1px;
+	top: 18px;
+	cursor: default;
+}
+.coolDatePickerDate
+{
+	padding-top: 2px;
+	font: 7.5pt Verdana;
+	cursor: hand;
+}
+/*弹出窗口的样式,luzhe-20080812*/
+#DetailDiv 
+{
+	position:absolute;
+	z-index:10;
+	left:10px;
+	top:10px;
+	border:1px #666666 solid;
+	background:#93dbe7;
+	width:10px;
+	height:10px;
+	filter:progid:DXImageTransform.Microsoft.Alpha( style=0,opacity=90);/*半透明样式*/
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-densitydpi" />
+    <title>个人信息</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/self-menu.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/jquery-jtemplates.js"></script>
+    <script src="./js/pageCommon.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.4"></script>
+</head>
+<script>
+$(function(){
+    if(!localStorage.userinfo){
+        window.location.href = "bind.html";
+    }
+    var userInfo = JSON.parse(localStorage.userinfo);
+    // 附上模板
+    $("#result1").setTemplateElement("template");
+    // 给模板加载数据
+    $("#result1").processTemplate(userInfo);
+});
+</script>
+
+<body>
+
+<header>
+    个人中心
+</header>
+<div class="self-menu">
+    <div id="menu" class="menu">
+        <ul>
+            <li class="first-item " style="margin-left: 1%"><a href="selfzoom.html">我的中心</a></li>
+            <li class="selected"><a href="#">个人信息</a></li>
+            <li class="right-border0" style="margin-right: 1%"><a href="myOrderList.html">订单信息</a></li>
+            <li class="margin-left" style="margin-left: 1%"><a href="myactivity.html">我的活动</a></li>
+            <li><a href="mysave.html">我的收藏</a></li>
+            <li class="right-border0" style="margin-right: 1%"><a href="mylike.html">我的关注</a></li>
+        </ul>
+    </div>
+    <div class="move-left" id="moveleft"><a ></a></div>
+    <div class="move-right" id="moveright"><a ></a></div>
+</div>
+<main class="selfzoom" id="result1">
+    <textarea id="template" style="display:none">
+    <div class="detail">
+        <ul>
+            <li class="first"><span>用户名</span><span class="margin-rightNon">{$T.UserName}</span></li>
+            <li class="first"><span>用户编号</span><span class="margin-rightNon">{$T.UserID}</span></li>
+            <li class="paddign-top50"><span>昵称</span><span class="margin-rightNon" >{$T.NickName}</span></li>
+            <li><span>电话</span><span class="margin-rightNon">{$T.Phone}</span></li>
+            <li><span>邮箱</span><span class="margin-rightNon">{$T.Email}</span></li>
+            <li><span>地址</span><span class="margin-rightNon">{$T.Address}</span></li>
+        </ul>
+    </div>
+
+</textarea>
+</main>
+<footer>
+    <ul>
+        <li class="side-item"></li>
+        <li>
+            <a  href="activities.html">
+                <span class="button-icon activity-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a  href="busines.html">
+                <span class="button-icon business-icon"></span>
+            </a>
+        </li>
+        <li>
+            <a class="selected"  href="selfzoom.html">
+                <span class="button-icon selfzoom-icon"></span>
+            </a>
+        </li>
+        <li class="side-item"></li>
+    </ul>
+</footer>
+<script>
+    $(function () {
+        $(window).scroll(function () {
+            $("footer").animate({bottom: "0"}, "fast");
+        });
+    });
+</script>
+
+</body>
+</html>

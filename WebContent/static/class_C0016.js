@@ -1,0 +1,1 @@
+var contentlist=[{"IssueDate":"2014-10-19","ChannelCode":"C0016","R15":null,"ContentTitle":"有哪些不那么主旋律的爱国电影？","R13":null,"R1":"Y","R14":null,"R11":null,"ContentHtml":null,"R12":null,"R10":null,"R8":null,"R9":null,"R6":null,"R7":null,"R4":null,"R5":null,"R2":null,"ContentFrom":null,"R3":null,"SerialNo":"CT0000000002","ContentTxt":null,"IssueTime":"08:42:26"}];

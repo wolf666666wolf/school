@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-10-29","ChannelCode":"C0033","R15":"","ContentTitle":"这个不错啊","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>我<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"U00000002","R3":"","SerialNo":"CT0000000008","ContentTxt":"我","IssueTime":"23:50:36"};

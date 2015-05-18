@@ -1,0 +1,1 @@
+var contentinfo={"IssueDate":"2014-11-28","ChannelCode":"C0041","R15":"","ContentTitle":"中国要实行医教方案！","R13":"","R1":"Y","R14":"","R11":"","ContentHtml":"<p>中国要实行医教方案！<\/p>","R12":"","R10":"","R8":"","R9":"","R6":"","R7":"","R4":"","R5":"","R2":"","ContentFrom":"","R3":"","SerialNo":"CT0000000186","ContentTxt":"中国要实行医教方案！","IssueTime":"09:48:14"};
